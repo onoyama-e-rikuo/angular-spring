@@ -10,10 +10,9 @@ import {AuthenticationService} from '../service/authentication.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private authenticationService;
 
   constructor(
-    authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService
   ) {}
 
   intercept(httpRequest: HttpRequest<any>, httpHandler: HttpHandler): Observable<HttpEvent<any>> {
