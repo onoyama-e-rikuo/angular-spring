@@ -5,9 +5,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AuthenticationService} from './service/authentication.service';
 import {UserService} from './service/user.service';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS,  HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './interceptor/auth.interceptor';
-import {AuthenticationGuard} from './guars/authentication.guard';
+import {AuthenticationGuard} from './guard/authentication.guard';
+import {NotificationModule} from './notification/notification.module';
+import {NotificationService} from './service/notification.service';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,15 @@ import {AuthenticationGuard} from './guars/authentication.guard';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NotificationModule
   ],
   providers: [
     AuthenticationService,
     UserService,
     AuthenticationGuard,
+    NotificationService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
     ],
   bootstrap: [AppComponent]
